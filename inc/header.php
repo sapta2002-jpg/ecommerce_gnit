@@ -1,7 +1,3 @@
-<?php
-include("./database/db.php")
-?>
-
 <div class="top-header">
 	<div class="container">
 		<div class="top-header-main">
@@ -32,12 +28,15 @@ include("./database/db.php")
 	</div>
 </div>
 <!--top-header-->
-<?php session_start(); ?>
+<!-- <?php session_start(); ?> -->
 <?php if (isset($_SESSION['user_name'])): ?>
-	<p>Welcome, <?php echo htmlspecialchars($_SESSION['user_name']); ?> | <a href="logout.php">Logout</a></p>
+	<p>Welcome, <?php echo htmlspecialchars($_SESSION['user_name']);  ?> | <a href="logout.php">Logout</a></p>
 <?php else: ?>
 	<p><a href="account.php">Login / Register</a></p>
 <?php endif; ?>
+
+<?php echo $_SESSION['user_id']; ?>
+
 <!--bottom-header-->
 <div class="header-bottom">
 	<div class="container">
@@ -269,46 +268,3 @@ include("./database/db.php")
 		<div class="clearfix"> </div>
 	</div>
 </div>
-
-<div class="bnr" id="home">
-		<div id="top" class="callbacks_container">
-			<ul class="rslides" id="slider4">
-				<li>
-					<div class="banner-1"></div>
-				</li>
-				<li>
-					<div class="banner-2"></div>
-				</li>
-				<li>
-					<div class="banner-3"></div>
-				</li>
-			</ul>
-		</div>
-		<div class="clearfix"> </div>
-	</div>
-
-
-
-    <!--Slider-Starts-Here-->
-	<script src="js/responsiveslides.min.js"></script>
-	<script>
-		// You can also use "$(window).load(function() {"
-		$(function() {
-			// Slideshow 4
-			$("#slider4").responsiveSlides({
-				auto: true,
-				pager: true,
-				nav: false,
-				speed: 500,
-				namespace: "callbacks",
-				before: function() {
-					$('.events').append("<li>before event fired.</li>");
-				},
-				after: function() {
-					$('.events').append("<li>after event fired.</li>");
-				}
-			});
-
-		});
-	</script>
-	<!--End-slider-script-->
