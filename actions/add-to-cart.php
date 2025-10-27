@@ -17,12 +17,26 @@ if (isset($_POST['add_to_cart_btn'])) {
 
     $userId = $_SESSION['user_id'];
 
-    // step 4 -> check if product is already exists in cart then update the quantity else insert into cart table (Next upgrade - make it dynamic)
+    // step 3 -> check if product is already exists in cart then update the quantity else insert into cart table (Next upgrade - make it dynamic)
 
-    $insert = "INSERT INTO cart SET product_id='$productId', qty='$quantity', price='$price', user_id='$userId'";
-    $db->query($insert);
+    $select = "SELECT * FROM cart WHERE product_id='$productId' AND user_id='$userId'";
+    $result = $db->query($select);
+
+    echo "<pre>";
+    print_r($result);
+    echo "</pre>";
+    die();
+
+
+    if ($result->num_rows > 0) {
+        $update = "UPDATE cart SET qty=qty+$quantity, price='$price' WHERE product_id='$productId' AND user_id='$userId'";
+        $db->query($update);
+    } else {
+        $insert = "INSERT INTO cart SET product_id='$productId', qty='$quantity', price='$price', user_id='$userId'";
+        $db->query($insert);
+    }
+
+    // last step -> after insert redirect into cart page
     header("location: ../cart.php");
     exit;
 }
-
-// step 3 -> after insert redirect into cart page

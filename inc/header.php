@@ -19,7 +19,7 @@
 							</div>
 							<img src="images/cart-1.png" alt="" />
 					</a>
-					<p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
+					<p><a href="./cart.php" class="simpleCart_empty">Empty Cart</a></p>
 					<div class="clearfix"> </div>
 				</div>
 			</div>
@@ -34,8 +34,6 @@
 <?php else: ?>
 	<p><a href="account.php">Login / Register</a></p>
 <?php endif; ?>
-
-<?php echo $_SESSION['user_id']; ?>
 
 <!--bottom-header-->
 <div class="header-bottom">
