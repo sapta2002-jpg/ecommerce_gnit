@@ -7,6 +7,7 @@
 	<!--top-header-->
 	<?php include("inc/header.php"); ?>
 	<!--bottom-header-->
+
 	<!--start-breadcrumbs-->
 	<div class="breadcrumbs">
 		<div class="container">
@@ -19,6 +20,7 @@
 		</div>
 	</div>
 	<!--end-breadcrumbs-->
+
 	<!--start-single-->
 	<div class="single contact">
 		<div class="container">
@@ -66,128 +68,41 @@ $(window).load(function() {
 							<span class="reducedfrom">$800.00</span>
 							<span class="actual item_price">$600.00</span><a href="#">click for offer</a>
 						</div>
-						<h2 class="quick">Quick Overview:</h2>
-						<p class="quick_desc"> Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; es</p>
-						<ul class="product-colors">
-							<h3>available Colors ::</h3>
-							<li><a class="color1" href="#"><span> </span></a></li>
-							<li><a class="color2" href="#"><span> </span></a></li>
-							<li><a class="color3" href="#"><span> </span></a></li>
-							<li><a class="color4" href="#"><span> </span></a></li>
-							<li><a class="color5" href="#"><span> </span></a></li>
-							<li><a class="color6" href="#"><span> </span></a></li>
-							<li><a class="color7" href="#"><span> </span></a></li>
-							<li><a class="color8" href="#"><span> </span></a></li>
-							<div class="clear"> </div>
-						</ul>
-						<ul class="size">
-							<h3>Length</h3>
-							<li><a href="#">7</a></li>
-							<li><a href="#">6</a></li>
-						</ul>
-						<div class="quantity_box">
-							<ul class="product-qty">
-								<span>Quantity:</span>
-								<select>
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
-									<option>6</option>
-								</select>
-							</ul>
+						<div class="col-md-7 single-top-right">
+							<div class="details-left-info simpleCart_shelfItem">
+								<h3>Accessories Latest</h3>
+								<p class="availability">Availability: <span class="color">In stock</span></p>
+								<div class="price_single">
+									<span class="reducedfrom" style="text-decoration: none;">
+										$<?php echo $row['price']; ?>
+									</span>
+								</div>
+								<h2 class="quick">Quick Overview:</h2>
+								<p class="quick_desc"> <?php echo $row['description']; ?> </p>
+								<form action="actions/add-to-cart.php" method="post">
+									<div class="quantity_box">
+										<ul class="product-qty">
+											<span>Quantity:</span>
+											<select name="quantity">
+												<option value="1">1</option>
+												<option value="2">2</option>
+												<option value="3">3</option>
+												<option value="4">4</option>
+												<option value="5">5</option>
+												<option value="6">6</option>
+											</select>
+										</ul>
+										<input type="hidden" name="productId" value="<?php echo $row['id']; ?>" />
+										<input type="hidden" name="price" value="<?php echo $row['price']; ?>" />
+									</div>
+									<div class="clearfix"></div>
+									<div class="single-but item_add">
+										<input type="submit" value="add to cart" name="add_to_cart_btn" />
+									</div>
+								</form>
+							</div>
 						</div>
-					<div class="clearfix"> </div>
-				<div class="single-but item_add">
-					<input type="submit" value="add to cart"/>
-				</div>
-			</div>
-		</div>
-		<div class="clearfix"></div>
-	</div>
-					<div class="latest products">
-						<div class="product-one">
-							<div class="col-md-4 product-left single-left"> 
-								<div class="p-one simpleCart_shelfItem">
-									
-									<a href="#">
-								<img src="images/shoes-1.png" alt="" />
-								<div class="mask mask1">
-									<span>Quick View</span>
-								</div>
-							</a>
-									<h4>Aenean placerat</h4>
-									<p><a class="item_add" href="#"><i></i> <span class=" item_price">$329</span></a></p>
-									
-								</div>
-							</div>
-							<div class="col-md-4 product-left single-left"> 
-								<div class="p-one simpleCart_shelfItem">
-									<a href="#">
-								<img src="images/shoes-2.png" alt="" />
-								<div class="mask mask1">
-									<span>Quick View</span>
-								</div>
-							</a>
-									<h4>Aenean placerat</h4>
-									<p><a class="item_add" href="#"><i></i> <span class=" item_price">$329</span></a></p>
-									
-								</div>
-							</div>
-							<div class="col-md-4 product-left single-left"> 
-								<div class="p-one simpleCart_shelfItem">
-									<a href="#">
-								<img src="images/shoes-3.png" alt="" />
-								<div class="mask mask1">
-									<span>Quick View</span>
-								</div>
-							</a>
-									<h4>Aenean placerat</h4>
-									<p><a class="item_add" href="#"><i></i> <span class=" item_price">$329</span></a></p>									
-								</div>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-						<div class="product-one">
-							<div class="col-md-4 product-left single-left"> 
-								<div class="p-one simpleCart_shelfItem">
-									<a href="#">
-								<img src="images/shoes-13.png" alt="" />
-								<div class="mask mask1">
-									<span>Quick View</span>
-								</div>
-							</a>
-									<h4>Aenean placerat</h4>
-									<p><a class="item_add" href="#"><i></i> <span class=" item_price">$329</span></a></p>									
-								</div>
-							</div>
-							<div class="col-md-4 product-left single-left"> 
-								<div class="p-one simpleCart_shelfItem">
-									<a href="#">
-								<img src="images/shoes-5.png" alt="" />
-								<div class="mask mask1">
-									<span>Quick View</span>
-								</div>
-							</a>
-									<h4>Aenean placerat</h4>
-									<p><a class="item_add" href="#"><i></i> <span class=" item_price">$329</span></a></p>									
-								</div>
-							</div>
-							<div class="col-md-4 product-left single-left"> 
-								<div class="p-one simpleCart_shelfItem">
-									<a href="#">
-								<img src="images/shoes-6.png" alt="" />
-								<div class="mask mask1">
-									<span>Quick View</span>
-								</div>
-								</a>
-									<h4>Aenean placerat</h4>
-									<p><a class="item_add" href="#"><i></i> <span class=" item_price">$329</span></a></p>				
-								</div>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
+						<div class="clearfix"></div>
 					</div>
 				</div>
 				<div class="col-md-3 single-right">

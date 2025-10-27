@@ -1,0 +1,28 @@
+<?php
+include("../admin/database/db.php");
+session_start();
+
+// step 1 ->  validation all post inputs
+$productId = $_POST['productId'];
+$quantity = $_POST['quantity'];
+$price = $_POST['price'];
+
+if (!$productId || !$quantity || !$price) {
+    header("location: ../index.php");
+    exit;
+}
+
+// step 2 -> if add_to_cart_btn is set then insert into table -> cart
+if (isset($_POST['add_to_cart_btn'])) {
+
+    $userId = $_SESSION['user_id'];
+
+    // step 4 -> check if product is already exists in cart then update the quantity else insert into cart table (Next upgrade - make it dynamic)
+
+    $insert = "INSERT INTO cart SET product_id='$productId', qty='$quantity', price='$price', user_id='$userId'";
+    $db->query($insert);
+    header("location: ../cart.php");
+    exit;
+}
+
+// step 3 -> after insert redirect into cart page

@@ -1,3 +1,7 @@
+<?php
+include("admin/database/db.php");
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -48,17 +52,56 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			$(".memenu").memenu();
 		});
 	</script>
-	<link rel="stylesheet" href="./css/customer.css">
 </head>
 
 <body>
 	<!--top-header-->
 	<?php include("inc/header.php"); ?>
 	<!--bottom-header-->
+
 	<!--banner-starts-->
-	
+	<div class="bnr" id="home">
+		<div id="top" class="callbacks_container">
+			<ul class="rslides" id="slider4">
+				<li>
+					<div class="banner-1"></div>
+				</li>
+				<li>
+					<div class="banner-2"></div>
+				</li>
+				<li>
+					<div class="banner-3"></div>
+				</li>
+			</ul>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
 	<!--banner-ends-->
-	
+
+	<!--Slider-Starts-Here-->
+	<script src="js/responsiveslides.min.js"></script>
+	<script>
+		// You can also use "$(window).load(function() {"
+		$(function() {
+			// Slideshow 4
+			$("#slider4").responsiveSlides({
+				auto: true,
+				pager: true,
+				nav: false,
+				speed: 500,
+				namespace: "callbacks",
+				before: function() {
+					$('.events').append("<li>before event fired.</li>");
+				},
+				after: function() {
+					$('.events').append("<li>after event fired.</li>");
+				}
+			});
+
+		});
+	</script>
+	<!--End-slider-script-->
+
 	<!--start-banner-bottom-->
 	<div class="banner-bottom">
 		<div class="container">
@@ -98,8 +141,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 	<!--end-banner-bottom-->
+
 	<!--start-shoes-->
-	<?php include("./inc/product-listing/home-products.php") ?>
+	<div class="shoes">
+		<div class="container">
+			<div class="product-one">
+
+				<?php
+				$res = $db->query("SELECT product.name as pname , product.image , product.price , product.description, product.category_id ,category.name as cname , category.id FROM product INNER JOIN category ON category.id = product.category_id ");
+				while ($row = $res->fetch_assoc()) { ?>
+
+					<div class="col-md-3 product-left">
+						<div class="p-one simpleCart_shelfItem">
+							<a href="single.php?id=<?php echo $row['id']; ?>">
+								<img src="admin/uploads/<?php echo $row['image']; ?>" alt="" style="" />
+								<div class="mask">
+									<span>Quick View</span>
+								</div>
+							</a>
+							<h4><?php echo $row['pname']; ?></h4>
+							<p>
+								<a class="item_add" href="#">
+									<span class=" item_price">
+										$<?php echo $row['price']; ?>
+									</span>
+								</a>
+							</p>
+						</div>
+					</div>
+
+				<?php }	?>
+			</div>
+		</div>
+	</div>
 	<!--end-shoes-->
 	<!--start-abt-shoe-->
 	<div class="abt-shoe">
