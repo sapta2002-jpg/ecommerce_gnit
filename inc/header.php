@@ -32,7 +32,7 @@ include("./database/db.php")
 	</div>
 </div>
 <!--top-header-->
-<?php session_start(); ?>
+<!-- <?php session_start(); ?> -->
 <?php if (isset($_SESSION['user_name'])): ?>
 	<p>Welcome, <?php echo htmlspecialchars($_SESSION['user_name']); ?> | <a href="logout.php">Logout</a></p>
 <?php else: ?>
