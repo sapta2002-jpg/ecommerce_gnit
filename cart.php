@@ -43,7 +43,7 @@
     ?>
 
     <!-- Simple Table Section -->
-    <div class="container" style="margin-top: 20px;">
+    <div class="container" style="margin-top: 20px;" id="tableContainer">
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
@@ -61,12 +61,19 @@
                     <tr>
                         <td> <?php echo $row['product_name']; ?> </td>
                         <td>
-                            <input
-                                type="number"
-                                class="form-control"
-                                value="<?php echo $row['qty']; ?>"
-                                min="1"
-                                style="width: 80px; display: inline-block;" />
+                            <form id="form<?php echo $row['cart_id']; ?>">
+                                <input type="hidden" name="cart_id" value="<?php echo $row['cart_id']; ?>"
+                                    id="cart_id<?php echo $row['cart_id']; ?>" />
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    name="qty"
+                                    value="<?php echo $row['qty']; ?>"
+                                    min="1"
+                                    style="width: 80px; display: inline-block;"
+                                    id="qty<?php echo $row['cart_id']; ?>"
+                                    oninput="cartUpdate(<?php echo $row['cart_id']; ?>)" />
+                            </form>
                         </td>
                         <td>$<?php echo $row['price']; ?></td>
                         <td>$<?php echo $row['price'] * $row['qty']; ?></td>
@@ -89,7 +96,59 @@
         </table>
     </div>
 
+    <div class="loader hidden">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <script>
+        function cartUpdate(id) {
+            const formTag = `form${id}`;
+
+            $cart_id = $("#cart_id" + id).val();
+            $qty = $("#qty" + id).val();
+
+            $(".loader").removeClass("hidden");
+
+            $.ajax({
+                url: 'http://localhost/ecommerce_gnit/actions/cart-update.php',
+                type: 'POST',
+                data: {
+                    cart_id: $cart_id,
+                    qty: $qty
+                },
+                dataType: "json",
+                success: function(response) {
+                    console.log(response);
+                    if (response.data) {
+                        generateCartTable();
+                    }
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+
+        function generateCartTable() {
+            $.ajax({
+                url: 'http://localhost/ecommerce_gnit/actions/generate-cart-table.php',
+                type: 'GET',
+                dataType: "html",
+                success: function(response) {
+                    // console.log(response);
+                    $("#tableContainer").html(response);
+                    $(".loader").addClass("hidden");
+                },
+                error: function() {
+                    console.log("Error in generating cart table");
+                }
+            })
+        }
+    </script>
+
     <!--start-footer-->
     <?php include("inc/footer.php"); ?>
 
 </body>
+
+</html>

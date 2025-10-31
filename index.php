@@ -148,7 +148,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="product-one">
 
 				<?php
-				$res = $db->query("SELECT product.name as pname , product.image , product.price , product.description, product.category_id ,category.name as cname , category.id FROM product INNER JOIN category ON category.id = product.category_id ");
+				$query = "
+					SELECT product.name as pname , product.image , product.price , product.description, product.category_id ,category.name as cname , category.id 
+					FROM product 
+					INNER JOIN category 
+					ON category.id = product.category_id
+				";
+				$res = $db->query($query);
+
+				// print_r($res);
+				// die();
+				// exit();
+
 				while ($row = $res->fetch_assoc()) { ?>
 
 					<div class="col-md-3 product-left">
