@@ -1,0 +1,136 @@
+/* Page Loader Overlay */
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+/* Hide loader */
+.loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Spinner Container */
+.loader-spinner {
+    width: 50px;
+    height: 50px;
+    position: relative;
+}
+
+/* Spinning Circle */
+.loader-spinner::before,
+.loader-spinner::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    border: 4px solid transparent;
+    border-top-color: #333;
+    animation: spin 1s linear infinite;
+}
+
+.loader-spinner::before {
+    width: 50px;
+    height: 50px;
+    border-top-color: #333;
+    border-right-color: #333;
+    animation: spin 1s linear infinite;
+}
+
+.loader-spinner::after {
+    width: 30px;
+    height: 30px;
+    top: 10px;
+    left: 10px;
+    border-top-color: #ff6b6b;
+    animation: spin 0.5s linear infinite reverse;
+}
+
+/* Alternative: Simple Spinner */
+.loader-simple {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #333;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Alternative: Dots Loader */
+.loader-dots {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader-dot {
+    width: 12px;
+    height: 12px;
+    background-color: #333;
+    border-radius: 50%;
+    animation: bounce 1.4s ease-in-out infinite both;
+}
+
+.loader-dot:nth-child(1) {
+    animation-delay: -0.32s;
+}
+
+.loader-dot:nth-child(2) {
+    animation-delay: -0.16s;
+}
+
+.loader-dot:nth-child(3) {
+    animation-delay: 0;
+}
+
+/* Keyframe Animations */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    80%,
+    100% {
+        transform: scale(0);
+        opacity: 0.5;
+    }
+
+    40% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Dark Theme Variant */
+.loader.dark {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.loader.dark .loader-spinner::before,
+.loader.dark .loader-simple {
+    border-top-color: #fff;
+    border-right-color: #fff;
+}
+
+.loader.dark .loader-dot {
+    background-color: #fff;
+}
