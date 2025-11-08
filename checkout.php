@@ -31,8 +31,26 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 			<div class="row">
 				<div class="col-6">
-					<form action="">
-
+					<form action="./actions/place-order.php" method="post">
+						<div class="form-group">
+							<label for="country">Country</label>
+							<input type="text" class="form-control" id="country" name="country" placeholder="Enter country" required>
+						</div>
+						<div class="form-group">
+							<label for="state">State</label>
+							<input type="text" class="form-control" id="state" name="state" placeholder="Enter state" required>
+						</div>
+						<div class="form-group">
+							<label for="city">City</label>
+							<input type="text" class="form-control" id="city" name="city" placeholder="Enter city" required>
+						</div>
+						<div class="form-group">
+							<label for="pincode">Pincode</label>
+							<input type="text" class="form-control" id="pincode" name="pincode" placeholder="Enter pincode" required>
+						</div>
+						<div class="form-group text-right">
+							<button type="submit" class="btn btn-primary btn-lg">Order Now</button>
+						</div>
 					</form>
 				</div>
 			</div>
