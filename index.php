@@ -149,7 +149,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 				<?php
 				$query = "
-					SELECT product.name as pname , product.image , product.price , product.description, product.category_id ,category.name as cname , category.id 
+					SELECT product.id as product_id , product.name as pname , product.image , product.price , product.description, product.category_id ,
+					category.name as cname , category.id as category_id
 					FROM product 
 					INNER JOIN category 
 					ON category.id = product.category_id
@@ -164,7 +165,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 					<div class="col-md-3 product-left">
 						<div class="p-one simpleCart_shelfItem">
-							<a href="single.php?id=<?php echo $row['id']; ?>">
+							<a href="single.php?id=<?php echo $row['product_id']; ?>">
 								<img src="admin/uploads/<?php echo $row['image']; ?>" alt="" style="" />
 								<div class="mask">
 									<span>Quick View</span>

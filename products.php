@@ -77,12 +77,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="product-one">
 
 						<?php
-						$res = $db->query("SELECT product.name as pname , product.image , product.price , product.description, product.category_id ,category.name as cname , category.id FROM product INNER JOIN category ON category.id = product.category_id ");
+						$query = "
+							SELECT product.id as product_id, product.name as pname , product.image , product.price , product.description, product.category_id ,
+							category.name as cname , category.id 
+							FROM product 
+							INNER JOIN category 
+							ON category.id = product.category_id
+						";
+						$res = $db->query($query);
 						while ($row = $res->fetch_assoc()) { ?>
 
 							<div class="col-md-4 product-left single-left">
 								<div class="p-one simpleCart_shelfItem">
-									<a href="single.php?id=<?php echo $row['id']; ?>">
+									<a href="single.php?id=<?php echo $row['product_id']; ?>">
 										<img src="admin/uploads/<?php echo $row['image']; ?>" alt="" style="" />
 										<div class="mask mask1">
 											<span>Quick View</span>
@@ -102,17 +109,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="col-md-3 p-right single-right">
 					<h3>Categories</h3>
 					<ul class="product-categories">
-
 						<?php
 						$res = 	$db->query("SELECT * FROM category");
 						while ($row = $res->fetch_assoc()) { ?>
-
 							<li><a href="#"> <?php echo $row['name']; ?> </a></li>
-
 						<?php } ?>
-
 					</ul>
-
 				</div>
 				<div class="clearfix"> </div>
 			</div>

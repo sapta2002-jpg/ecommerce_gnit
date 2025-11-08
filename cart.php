@@ -78,7 +78,7 @@
                         <td>$<?php echo $row['price']; ?></td>
                         <td>$<?php echo $row['price'] * $row['qty']; ?></td>
                         <td>
-                            <button class="delete_btn">
+                            <button class="delete_btn" onclick="deleteCart(<?php echo $row['cart_id']; ?>)">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
                         </td>
@@ -94,6 +94,8 @@
                 </tr>
             </tfoot>
         </table>
+
+
     </div>
 
     <div class="loader hidden">
@@ -141,6 +143,29 @@
                 },
                 error: function() {
                     console.log("Error in generating cart table");
+                }
+            })
+        }
+
+        function deleteCart(id) {
+            $.ajax({
+                url: "http://localhost/ecommerce_gnit/actions/cart-delete.php",
+                type: "POST",
+                data: {
+                    cart_id: id
+                },
+                dataType: "json",
+                success: function(response) {
+                    if (response.status === "success") {
+                        generateCartTable();
+                    } else {
+                        alert("Something went wrong");
+                        console.log(response);
+                    }
+                },
+                error: function(error) {
+                    alert("Something went wrong");
+                    console.log(error);
                 }
             })
         }
