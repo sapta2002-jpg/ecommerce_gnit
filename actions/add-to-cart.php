@@ -22,10 +22,10 @@ if (isset($_POST['add_to_cart_btn'])) {
     $select = "SELECT * FROM cart WHERE product_id='$productId' AND user_id='$userId'";
     $result = $db->query($select);
 
-    echo "<pre>";
-    print_r($result);
-    echo "</pre>";
-    die();
+    // echo "<pre>";
+    // print_r($result);
+    // echo "</pre>";
+    // die();
 
 
     if ($result->num_rows > 0) {

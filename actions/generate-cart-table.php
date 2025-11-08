@@ -55,7 +55,7 @@ while ($row = $resultForSubtotal->fetch_assoc()) {
                 <td>$<?php echo $row['price']; ?></td>
                 <td>$<?php echo $row['price'] * $row['qty']; ?></td>
                 <td>
-                    <button class="delete_btn">
+                    <button class="delete_btn" onclick="deleteCart(<?php echo $row['cart_id']; ?>)">
                         <i class="fa-solid fa-trash"></i>
                     </button>
                 </td>

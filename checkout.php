@@ -28,34 +28,33 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!--start-ckeckout-->
 	<div class="ckeckout">
 		<div class="container">
-			<div class="ckeckout-top">
-				<div class=" cart-items heading">
-					<h3>My Shopping Bag (3)</h3>
 
-					<div class="in-check">
-						<ul class="unit">
-							<li><span>Item</span></li>
-							<li><span>Product Name</span></li>
-							<li><span>Unit Price</span></li>
-							<li><span></span></li>
-							<li> </li>
-							<div class="clearfix"> </div>
-						</ul>
-
-						<ul class="cart-header">
-							<div class="close1"> </div>
-							<li class="ring-in"><a href="single.php"><img src="images/s-1.jpg" class="img-responsive" alt=""></a>
-							</li>
-							<li><span>Woo Dress</span></li>
-							<li><span>$ 290.00</span></li>
-							<li><span>In Stock</span></li>
-							<li> <a href="single.php" class="add-cart cart-check">ADD TO CART</a></li>
-							<div class="clearfix"> </div>
-						</ul>
-
-					</div>
+			<div class="row">
+				<div class="col-6">
+					<form action="./actions/place-order.php" method="post">
+						<div class="form-group">
+							<label for="country">Country</label>
+							<input type="text" class="form-control" id="country" name="country" placeholder="Enter country" required>
+						</div>
+						<div class="form-group">
+							<label for="state">State</label>
+							<input type="text" class="form-control" id="state" name="state" placeholder="Enter state" required>
+						</div>
+						<div class="form-group">
+							<label for="city">City</label>
+							<input type="text" class="form-control" id="city" name="city" placeholder="Enter city" required>
+						</div>
+						<div class="form-group">
+							<label for="pincode">Pincode</label>
+							<input type="text" class="form-control" id="pincode" name="pincode" placeholder="Enter pincode" required>
+						</div>
+						<div class="form-group text-right">
+							<button type="submit" class="btn btn-primary btn-lg">Order Now</button>
+						</div>
+					</form>
 				</div>
 			</div>
+
 		</div>
 	</div>
 	<!--end-ckeckout-->
