@@ -27,6 +27,7 @@ if (isset($_POST['add_to_cart_btn'])) {
     // echo "</pre>";
     // die();
 
+    //TODO: Add cart restriction
 
     if ($result->num_rows > 0) {
         $update = "UPDATE cart SET qty=qty+$quantity, price='$price' WHERE product_id='$productId' AND user_id='$userId'";

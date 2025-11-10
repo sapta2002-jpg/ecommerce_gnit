@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="./css/custom.css" />
+
 <div class="top-header">
 	<div class="container">
 		<div class="top-header-main">
@@ -30,9 +32,13 @@
 <!--top-header-->
 <!-- <?php session_start(); ?> -->
 <?php if (isset($_SESSION['user_name'])): ?>
-	<p>Welcome, <?php echo htmlspecialchars($_SESSION['user_name']);  ?> | <a href="logout.php">Logout</a></p>
+	<p class="login_register_link">
+		Welcome, <?php echo htmlspecialchars($_SESSION['user_name']);  ?> | <a href="logout.php">Logout</a>
+	</p>
 <?php else: ?>
-	<p><a href="account.php">Login / Register</a></p>
+	<p class="login_register_link">
+		<a href="account.php">Login / Register</a>
+	</p>
 <?php endif; ?>
 
 <!--bottom-header-->

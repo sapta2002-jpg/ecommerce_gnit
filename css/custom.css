@@ -3,3 +3,15 @@
     border: none;
     background: transparent;
 }
+
+.login_register_link {
+    padding-left: 16px;
+    padding-top: 17px;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Alegreya Sans SC', sans-serif;
+}
+
+.login_register_link a {
+    color: #702428;
+}
