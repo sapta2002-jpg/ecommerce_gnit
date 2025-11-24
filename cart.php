@@ -97,11 +97,25 @@
             </table>
         </div>
 
-        <div class="text-center" style="margin-top: 30px; margin-bottom: 30px;">
-            <a href="checkout.php" class="btn btn-primary btn-lg" style="padding: 12px 40px; font-size: 18px;">
-                Place Order
-            </a>
-        </div>
+        <?php
+        if ($result->num_rows > 0) {
+        ?>
+            <div class="text-center" style="margin-top: 30px; margin-bottom: 30px;">
+                <a href="checkout.php" class="btn btn-primary btn-lg" style="padding: 12px 40px; font-size: 18px;">
+                    Place Order
+                </a>
+            </div>
+        <?php
+        } else {
+        ?>
+            <div class="text-center" style="margin-top: 30px; margin-bottom: 30px;">
+                <a href="./" class="btn btn-primary btn-lg" style="padding: 12px 40px; font-size: 18px;">
+                    Continue Shopping
+                </a>
+            </div>
+        <?php
+        }
+        ?>
 
     </div>
 

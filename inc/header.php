@@ -1,3 +1,29 @@
+<?php
+session_start();
+include("admin/database/db.php");
+
+// get user cart details
+$cart_total = 0;
+$cart_count = 0;
+
+if (isset($_SESSION['user_id'])) {
+	$user_id = $_SESSION['user_id'];
+
+	$cart_query = "SELECT * FROM cart WHERE user_id = '$user_id'";
+	$cart_result = $db->query($cart_query);
+
+	$cart_count = $cart_result->num_rows;
+
+	for ($i = 0; $i < $cart_count; $i++) {
+		$cart_item = $cart_result->fetch_assoc();
+
+		$total = $cart_item['price'] * $cart_item['qty'];
+
+		$cart_total = $cart_total + $total;
+	}
+}
+?>
+
 <link rel="stylesheet" href="./css/custom.css" />
 
 <div class="top-header">
@@ -15,13 +41,22 @@
 			<div class="col-md-4 top-header-right">
 				<div class="cart box_1">
 					<a href="checkout.php">
-						<h3>
-							<div class="total">
-								<span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)
-							</div>
-							<img src="images/cart-1.png" alt="" />
+						<div class="total">
+							<span>$<?php echo $cart_total; ?></span>
+
+							(<span><?php echo $cart_count; ?> items</span>)
+						</div>
+						<img src="images/cart-1.png" alt="" />
 					</a>
-					<p><a href="./cart.php" class="simpleCart_empty">Empty Cart</a></p>
+					<p>
+						<?php
+						if ($cart_count > 0) {
+							echo "<a href='./cart.php' class='simpleCart_empty'>View Cart</a>";
+						} else {
+							echo "<a href='./cart.php' class='simpleCart_empty'>Empty Cart</a>";
+						}
+						?>
+					</p>
 					<div class="clearfix"> </div>
 				</div>
 			</div>

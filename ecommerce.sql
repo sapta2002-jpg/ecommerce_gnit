@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2025 at 06:36 AM
+-- Generation Time: Nov 24, 2025 at 07:11 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -40,10 +40,10 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`cart_id`, `product_id`, `user_id`, `qty`, `price`) VALUES
-(5, 10, 1, 3, '12000'),
-(6, 11, 1, 1, '5000'),
 (7, 10, 2, 4, '12000'),
-(8, 11, 2, 5, '5000');
+(8, 11, 2, 5, '5000'),
+(9, 10, 1, 2, '12000'),
+(10, 11, 1, 1, '5000');
 
 -- --------------------------------------------------------
 
@@ -95,7 +95,7 @@ CREATE TABLE `orders_table` (
 --
 
 INSERT INTO `orders_table` (`order_id`, `user_id`, `country`, `state`, `city`, `pincode`, `payment_id`, `payment_status`) VALUES
-(1, 2, 'India', 'West bengal', 'kolkata', 700053, NULL, 'pending');
+(1, 1, 'India', 'West Bengal', 'kolkata', 700053, NULL, 'pending');
 
 -- --------------------------------------------------------
 
@@ -109,18 +109,19 @@ CREATE TABLE `product` (
   `name` varchar(100) NOT NULL,
   `image` varchar(100) NOT NULL,
   `price` varchar(100) NOT NULL,
-  `description` text NOT NULL
+  `description` text NOT NULL,
+  `deleted_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`id`, `category_id`, `name`, `image`, `price`, `description`) VALUES
-(10, 6, 'SONY HEADPHONE', '1754193299gallery-footer-4.jpg', '12000', 'axssx'),
-(11, 11, 'Canon 47', '1754193893gallery-3.jpg', '5000', 'good quality'),
-(12, 12, 'abc', '1754740092b-2.jpg', '100', 'ok'),
-(13, 13, 'SONY ', '1754289376laddugopal-3.jpg', '300', 'GOOD');
+INSERT INTO `product` (`id`, `category_id`, `name`, `image`, `price`, `description`, `deleted_at`) VALUES
+(10, 6, 'SONY HEADPHONE', '1754193299gallery-footer-4.jpg', '12000', 'axssx', NULL),
+(11, 11, 'Canon 47', '1754193893gallery-3.jpg', '5000', 'good quality', NULL),
+(12, 12, 'abc', '1754740092b-2.jpg', '100', 'ok', NULL),
+(13, 13, 'SONY ', '1754289376laddugopal-3.jpg', '300', 'GOOD', NULL);
 
 -- --------------------------------------------------------
 
@@ -142,8 +143,8 @@ CREATE TABLE `sub_orders_table` (
 --
 
 INSERT INTO `sub_orders_table` (`sub_order_id`, `order_id`, `product_id`, `user_id`, `qty`, `price`) VALUES
-(1, 1, '10', '2', 4, '12000'),
-(2, 1, '11', '2', 5, '5000');
+(1, 1, '10', '1', 3, '12000'),
+(2, 1, '11', '1', 2, '5000');
 
 -- --------------------------------------------------------
 
@@ -156,17 +157,18 @@ CREATE TABLE `users` (
   `first_name` varchar(100) NOT NULL,
   `last_name` varchar(100) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `role` enum('Admin','Customer') NOT NULL DEFAULT 'Customer'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`) VALUES
-(1, 'SAYAN', 'SAHA', 'amisayan19@gmail.com', '$2y$10$SHJuEjwNefreNFxLMD5O/uLdm9j1ap5edH2xAtLaT6vSrFrm7OcFi'),
-(2, 'Sapto', 'Ghosh', 'sapto@gmail.com', '$2y$10$umRRfkh4xZMn6HxEwUIFw.w1q2/.4K39ma7rBNIxnkMl4Cx6AUbdK'),
-(3, 'SAYAN', 'SAHA', 'amisayan19@gmail.bb', '$2y$10$24kYmaCFSdGjLzLMkOsLuenBGgH2TeU1PpZw9uF1A1L2W3UeJCt/K');
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `role`) VALUES
+(1, 'SAYAN', 'SAHA', 'amisayan19@gmail.com', '$2y$10$SHJuEjwNefreNFxLMD5O/uLdm9j1ap5edH2xAtLaT6vSrFrm7OcFi', 'Customer'),
+(2, 'Sapto', 'Ghosh', 'sapto@gmail.com', '$2y$10$umRRfkh4xZMn6HxEwUIFw.w1q2/.4K39ma7rBNIxnkMl4Cx6AUbdK', 'Customer'),
+(3, 'SAYAN', 'SAHA', 'amisayan19@gmail.bb', '$2y$10$24kYmaCFSdGjLzLMkOsLuenBGgH2TeU1PpZw9uF1A1L2W3UeJCt/K', 'Customer');
 
 --
 -- Indexes for dumped tables
@@ -217,7 +219,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `category`
