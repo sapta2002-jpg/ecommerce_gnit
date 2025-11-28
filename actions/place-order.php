@@ -65,6 +65,4 @@ foreach ($cart_result as $cart_item) {
 // step 8. Redirect into payment gateway
 echo "Redirecting to Payment Gateway";
 
-// total payment price
-// user name
-// 
+return header("location: ../payment-gateway.php?order_id=$last_order_id");
