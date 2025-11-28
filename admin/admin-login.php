@@ -1,7 +1,7 @@
 <?php
 session_start();
 // Include your database connection file
-require 'db_connect.php';
+require("./database/db.php");
 
 // 1. Redirect if already logged in
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
@@ -20,9 +20,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "Please enter both username and password.";
     } else {
         // Prepare SQL (Prevents SQL Injection)
-        $sql = "SELECT id, username, password FROM users WHERE username = ?";
-        
-        if ($stmt = $conn->prepare($sql)) {
+        $sql = "SELECT id, email, password FROM users WHERE email = ?";
+
+        if ($stmt = $db->prepare($sql)) {
             $stmt->bind_param("s", $username);
             $stmt->execute();
             $stmt->store_result();
@@ -36,9 +36,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (password_verify($password, $hashed_password)) {
                     // Success: Start Session
                     session_regenerate_id();
-                    $_SESSION['loggedin'] = true;
-                    $_SESSION['id'] = $id;
-                    $_SESSION['username'] = $username;
+                    $_SESSION['admin_logged_in'] = true;
+                    $_SESSION['admin_id'] = $id;
+                    $_SESSION['admin_username'] = $username;
 
                     // Redirect to Dashboard
                     header("location: index.php"); // Or admin.php
@@ -88,14 +88,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="card-body p-0">
                         <div class="row">
                             <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                            
+
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
 
-                                    <?php if(!empty($error)): ?>
+                                    <?php if (!empty($error)): ?>
                                         <div class="alert alert-danger" role="alert">
                                             <?php echo $error; ?>
                                         </div>
@@ -122,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         </button>
                                         <hr>
                                     </form>
-                                    
+
                                     <div class="text-center">
                                         <a class="small" href="forgot-password.html">Forgot Password?</a>
                                     </div>
