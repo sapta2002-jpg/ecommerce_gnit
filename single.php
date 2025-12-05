@@ -17,8 +17,10 @@
 	$result = $db->query($select);
 	$row = $result->fetch_assoc();
 
+	$imagePath = './admin/uploads/' . $row['image'];
+
 	// echo "<pre>";
-	// print_r($row);
+	// print_r($imagePath);
 	// echo "</pre>";
 	// die();
 	?>
@@ -46,16 +48,16 @@
 							<div class="flexslider">
 								<ul class="slides">
 									<li data-thumb="images/s1.jpg">
-										<img src="images/s1.jpg" />
+										<img src="<?php echo $imagePath; ?>" />
 									</li>
 									<li data-thumb="images/s2.jpg">
-										<img src="images/s2.jpg" />
+										<img src="<?php echo $imagePath; ?>" />
 									</li>
 									<li data-thumb="images/s3.jpg">
-										<img src="images/s3.jpg" />
+										<img src="<?php echo $imagePath; ?>" />
 									</li>
 									<li data-thumb="images/s4.jpg">
-										<img src="images/s4.jpg" />
+										<img src="<?php echo $imagePath; ?>" />
 									</li>
 								</ul>
 							</div>
@@ -70,7 +72,8 @@
 						$(window).load(function() {
 							$('.flexslider').flexslider({
 								animation: "slide",
-								controlNav: "thumbnails"
+								animationLoop: false,
+								controlNav: false
 							});
 						});
 					</script>
