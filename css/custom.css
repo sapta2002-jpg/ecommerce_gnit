@@ -15,3 +15,10 @@
 .login_register_link a {
     color: #702428;
 }
+
+.top-header-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+}

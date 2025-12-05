@@ -1,6 +1,6 @@
 <?php
 
-$keyID = "rzp_test_RjRc3rFrZElcbx";
-$keySecret = "qEr3LYLsSKu4cfqFXlO11wfp";
+$keyID = "rzp_test_RmSXjNLeL6pCQN";
+$keySecret = "p1R7D6720xFcCEuPEo9w7S7V";
 
 $base_url = "http://localhost/ecommerce_gnit/";

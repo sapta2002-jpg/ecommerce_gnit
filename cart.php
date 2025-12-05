@@ -1,3 +1,6 @@
+<?php
+require("service/auth-middleware.php");
+?>
 <!DOCTYPE html>
 <html>
 

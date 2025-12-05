@@ -52,12 +52,17 @@ if (isset($_SESSION['user_id'])) {
 						<?php
 						if ($cart_count > 0) {
 							echo "<a href='./cart.php' class='simpleCart_empty'>View Cart</a>";
-						} else {
-							echo "<a href='./cart.php' class='simpleCart_empty'>Empty Cart</a>";
 						}
 						?>
 					</p>
 					<div class="clearfix"> </div>
+				</div>
+				<div class="cart box_2">
+					<a href="auth-pages/my-orders.php">
+						<div class="total">
+							My Orders
+						</div>
+					</a>
 				</div>
 			</div>
 			<div class="clearfix"></div>
