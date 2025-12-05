@@ -22,3 +22,11 @@
     align-items: center;
     gap: 1rem;
 }
+
+.single-main-right {
+    height: 455px;
+}
+
+.single-main-right h3 {
+    margin-top: 0;
+}

@@ -127,6 +127,9 @@
 						<div class="clearfix"></div>
 					</div>
 				</div>
+				<div class="col-md-3 single-main-right">
+					<h3>Releted Products</h3>
+				</div>
 			</div>
 			<!--end-single-->
 			<!--start-footer-->
